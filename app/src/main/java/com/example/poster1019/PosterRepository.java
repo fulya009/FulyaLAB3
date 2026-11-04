@@ -120,47 +120,56 @@ public class PosterRepository {
         }
     }
 
+    // Builds the list of five movie posters shown in the app.
     private static List<Posters> createPosters() {
         List<Posters> posters = new ArrayList<>();
 
-        Posters the100 = new Posters();
-        the100.id = "vietnam";
-        the100.image = R.drawable.poster3;
-        the100.name = "Vietnam Movie";
-        the100.rating = 5f;
-        the100.createdBy = "Cuong Ngo";
-        the100.story = "This is an Vietnam Movie with a young lady";
-        posters.add(the100);
+        Posters p1 = new Posters();
+        p1.id = "movie1";
+        p1.image = R.drawable.my_poster1;
+        p1.name = "The Last Ferry";
+        p1.rating = 4f;
+        p1.createdBy = "Elena Marsh";
+        p1.story = "A night-shift captain races a storm to bring strangers home.";
+        posters.add(p1);
 
-        Posters chineseMovie = new Posters();
-        chineseMovie.id = "chinese";
-        chineseMovie.image = R.drawable.poster4;
-        chineseMovie.name = "Chinese Movie";
-        chineseMovie.rating = 4f;
-        chineseMovie.createdBy = "Zhang San";
-        chineseMovie.story = "This is an Chinese Movie with a young lady.";
-        posters.add(chineseMovie);
+        Posters p2 = new Posters();
+        p2.id = "movie2";
+        p2.image = R.drawable.my_poster2;
+        p2.name = "Paper Lanterns";
+        p2.rating = 5f;
+        p2.createdBy = "Hiro Tanaka";
+        p2.story = "Two rival chefs fall for each other over one long festival night.";
+        posters.add(p2);
 
-        Posters japanMovie = new Posters();
-        japanMovie.id = "japanese";
-        japanMovie.image = R.drawable.poster1;
-        japanMovie.name = "Japanese Movie";
-        japanMovie.rating = 3f;
-        japanMovie.createdBy = "Juzo Itami";
-        japanMovie.story = "This is an Japanese Movie.";
-        posters.add(japanMovie);
+        Posters p3 = new Posters();
+        p3.id = "movie3";
+        p3.image = R.drawable.my_poster3;
+        p3.name = "Dust & Diesel";
+        p3.rating = 3f;
+        p3.createdBy = "Marcus Vale";
+        p3.story = "A retired racer gets pulled back for one last desert run.";
+        posters.add(p3);
 
-        Posters americanMovie = new Posters();
-        americanMovie.id = "american";
-        americanMovie.image = R.drawable.poster2;
-        americanMovie.name = "American Movie";
-        americanMovie.rating = 5f;
-        americanMovie.createdBy = "Tim Burton";
-        americanMovie.story = "This is an American Movie.";
-        posters.add(americanMovie);
+        Posters p4 = new Posters();
+        p4.id = "movie4";
+        p4.image = R.drawable.my_poster4;
+        p4.name = "The Quiet Floor";
+        p4.rating = 4f;
+        p4.createdBy = "Nadia Okoye";
+        p4.story = "A night janitor discovers the office is hiding something awake.";
+        posters.add(p4);
+
+        Posters p5 = new Posters();
+        p5.id = "movie5";
+        p5.image = R.drawable.my_poster5;
+        p5.name = "Signal Lost";
+        p5.rating = 5f;
+        p5.createdBy = "Theo Brandt";
+        p5.story = "A hiker's livestream keeps recording after she disappears.";
+        posters.add(p5);
 
         return posters;
-
     }
 
 

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ public class ContactFragment extends Fragment {
         super(R.layout.fragment_contact);
     }
 
+    // Sets up the email row and the "About Me" button when the page appears.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -27,8 +30,20 @@ public class ContactFragment extends Fragment {
                 openEmailApp(getString(R.string.contact_email));
             }
         });
+
+        // When the button is tapped, replace the intro text with a personal introduction.
+        TextView introText = view.findViewById(R.id.textCompanyIntro);
+        Button aboutMeButton = view.findViewById(R.id.buttonAboutMe);
+        aboutMeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                introText.setText(R.string.my_intro);
+
+            }
+        });
     }
 
+    // Opens the device's email app addressed to the given address, or shows a message if none exists.
     private void openEmailApp(String emailAddress){
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+emailAddress));
         try {

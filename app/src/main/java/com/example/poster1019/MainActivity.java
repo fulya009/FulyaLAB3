@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_PAGE_MAIN = "page_main";
     private static final String TAG_PAGE_FAVORITES = "page_favorites";
     private static final String TAG_PAGE_CONTACT = "page_contact";
+    private static final String TAG_PAGE_PET = "page_pet";
 
     //drawer the side menu inside it, and the bottom bar.
     private DrawerLayout drawerLayout;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private PosterRepository posterRepository;
     private final PosterRepository.FavoritesListener favoritesBadgeListener = this::updateFavoritesBadge;
 
+    // Updates the red number badge on the Favorite List tab to the current favorite count.
     private void updateFavoritesBadge() {
 
         int count = posterRepository.getFavoriteCount();
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         badge.setVisible(count > 0);
     }
 
-
+    // Builds the whole screen frame: toolbar, drawer, bottom bar, and the four pages.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,11 +113,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Create all four pages once, on first launch. On rotation they are restored instead.
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragmentContainer, new PostersFragment(), TAG_PAGE_MAIN)
                     .add(R.id.fragmentContainer, new FavoritesFragment(), TAG_PAGE_FAVORITES)
                     .add(R.id.fragmentContainer, new ContactFragment(), TAG_PAGE_CONTACT)
+                    .add(R.id.fragmentContainer, new PetFragment(), TAG_PAGE_PET)
                     .commitNow();
         } else {
             currentPageId = savedInstanceState.getInt(KEY_CURRENT_PAGE, R.id.nav_main);
@@ -126,8 +130,10 @@ public class MainActivity extends AppCompatActivity {
         posterRepository = PosterRepository.getInstance(this);
         posterRepository.addFavoritesListener(favoritesBadgeListener);
         updateFavoritesBadge();
+
     }
 
+    // Removes the badge listener so the singleton doesn't hold on to this Activity.
     @Override
     protected void onDestroy() {
         posterRepository.removeFavoritesListener(favoritesBadgeListener);
@@ -141,15 +147,16 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(KEY_CURRENT_PAGE, currentPageId);
     }
 
+    // Shows the chosen page, hides the rest, sets the toolbar title, and keeps both controls in sync.
     private void showPage(int pageId) {
         currentPageId = pageId;
 
-        //Show this page's Fragment and hide the other two. show/hide (instead of
+        //Show this page's Fragment and hide the others. show/hide (instead of
         // replace) keeps each page alive, with its scroll position and selections.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         String visibleTag = tagForPage(pageId);
-        for (String tag : new String[]{TAG_PAGE_MAIN, TAG_PAGE_FAVORITES, TAG_PAGE_CONTACT}) {
+        for (String tag : new String[]{TAG_PAGE_MAIN, TAG_PAGE_FAVORITES, TAG_PAGE_CONTACT, TAG_PAGE_PET}) {
             Fragment page = fragmentManager.findFragmentByTag(tag);
             if (page == null) {
                 continue;
@@ -179,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
             return R.string.title_favorites;
         } else if (pageId == R.id.nav_contact) {
             return R.string.title_contact;
+        } else if (pageId == R.id.nav_pet) {
+            return R.string.title_pet;
         }
         return R.string.posters;
     }
@@ -189,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
             return TAG_PAGE_FAVORITES;
         } else if (pageId == R.id.nav_contact) {
             return TAG_PAGE_CONTACT;
+        } else if (pageId == R.id.nav_pet) {
+            return TAG_PAGE_PET;
         }
         return TAG_PAGE_MAIN;
     }

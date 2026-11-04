@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
+            app:logo="@drawable/ic_toolbar_logo"
             android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
             app:title="@string/posters"
             app:titleCentered="true"

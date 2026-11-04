@@ -3,6 +3,9 @@
     <string name="add_to_watchlist">Add To Watchlist</string>
     <string name="posters">Posters</string>
 
+    <string name="nav_pet">My Pet</string>
+    <string name="title_pet">My Pet</string>
+
     <string name="nav_main">Main Page</string>
     <string name="nav_favorites">Favorite List</string>
     <string name="nav_contact">Contact Us</string>
@@ -18,7 +21,9 @@
     <string name="contact_email">contact@movieposter.example</string>
     <string name="contact_email_hint">Tap to open your email app</string>
     <string name="no_email_app">No email app found</string>
-
+    <string name="about_me_button">About Me</string>
+    <string name="my_intro">Hi, I\'m Fulya, a Computer Science student at CWU. I built this app by extending a starter project and adding my own features.</string>
+    <string name="pet_description">Meet Turnip, my  cat. She\'s curious, playful, and always finds the warmest spot in the house.</string>
 
     <plurals name="favorites_added">
         <item quantity="one">Added %d movie to Favorite List</item>
